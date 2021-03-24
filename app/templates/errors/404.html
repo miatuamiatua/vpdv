@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>{{ _('404') }}</h1>
+    <p>{{ _('Этой страницы не существует ¯\_(ツ)_/¯') }}</p>
+    <p><a href="javascript:history.back()">{{ _('Назад') }}</a></p>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>Поделиться постом</h1>
+    <p>{{ "Поделитесь ссылкой " }}<a href="{{ request.host_url + "user/" + request.args.get('author') + "#post" + request.args.get('id') }}">{{ request.host_url + "user/" + request.args.get('author') + "#post" + request.args.get('id') }}</a></p>
+{% endblock %}

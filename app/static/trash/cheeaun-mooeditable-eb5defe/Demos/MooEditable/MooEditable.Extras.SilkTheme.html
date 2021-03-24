@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>e</title>
+
+		<style type="text/css">
+			body{
+				font-family: sans-serif;
+				font-size: .9em;
+			}
+			#textarea-1{
+				width: 720px;
+				height: 200px;
+				padding: 10px;
+				border: 2px solid #ddd;
+			}
+		</style>
+
+		<link rel="stylesheet" type="text/css" href="../../Assets/MooEditable/MooEditable.css">
+		<link rel="stylesheet" type="text/css" href="../../Assets/MooEditable/MooEditable.Extras.css">
+		<link rel="stylesheet" type="text/css" href="../../Assets/MooEditable/MooEditable.SilkTheme.css">
+		<link rel="stylesheet" type="text/css" href="../../Assets/MooEditable/MooEditable.Smiley.css">
+		<script type="text/javascript" src="../assets/mootools.js"></script>
+		<script type="text/javascript" src="../../Source/MooEditable/MooEditable.js"></script>
+		<script type="text/javascript" src="../../Source/MooEditable/MooEditable.UI.MenuList.js"></script>
+		<script type="text/javascript" src="../../Source/MooEditable/MooEditable.Extras.js"></script>
+		<script type="text/javascript" src="../../Source/MooEditable/MooEditable.UI.ButtonOverlay.js"></script>
+		<script type="text/javascript" src="../../Source/MooEditable/MooEditable.Smiley.js"></script>
+
+		<script type="text/javascript">
+			window.addEvent('domready', function(){
+				$('textarea-1').mooEditable({
+					actions: 'bold italic underline strikethrough smiley formatBlock justifyleft justifyright justifycenter justifyfull insertunorderedlist undo redo createlink unlink urlimage toggleview'
+				});
+
+				// Post submit
+				$('theForm').addEvent('submit', function(e){
+					alert($('textarea-1').value);
+					return true;
+				});
+			});
+		</script>
+
+	</head>
+	<body>
+		<form id="theForm" method="post" action="http://form-data.appspot.com/">
+			<textarea id="textarea-1" name="editable1"></textarea>
+			<input type="submit">
+		</form>
+		<div id="data"></div>
+		<button id="btn" onclick="test()"></button>
+	</body>
+	<script type="text/javascript">
+		function test(){
+			document.getElementById('mooeditable-iframe').contentDocument.body.style.color = '#fff'; document.getElementById('mooeditable-iframe').contentDocument.body.style.fontFamily = 'Manrope Medium, sans-serif';
+		}
+
+	window.onload = function(){
+		document.getElementById('btn').click();
+  
+		var scriptTag = document.createElement("script");
+		scriptTag.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
+		document.getElementsByTagName("head")[0].appendChild(scriptTag);
+	}
+	setTimeout(test, 100);
+	</script>
+</html>

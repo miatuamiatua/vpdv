@@ -1,0 +1,64 @@
+/*
+ A change to the original MooEditable style
+ 
+ * Famfamfam Silk Iconset
+ * Darker gray color for mouse over selections 
+ * Rounded corners for buttons and overlays (only supported on WebKit and FireFox) 
+ 
+ Usage:
+        Include MooEditable.SilkTheme.css to overwrite the default settings
+        
+ 		<link rel="stylesheet" type="text/css" href="../../Assets/MooEditable/MooEditable.css">
+		<link rel="stylesheet" type="text/css" href="../../Assets/MooEditable/MooEditable.Extras.css">
+		<link rel="stylesheet" type="text/css" href="../../Assets/MooEditable/MooEditable.SilkTheme.css">
+ 
+ 
+ Author: Olivier Refalo
+ */
+
+
+.mooeditable-ui-toolbar .mooeditable-ui-button .button-icon{
+	background: transparent url(images/mooeditable-toolbarbuttons-silk.png) no-repeat 0 -8px;
+}
+
+.mooeditable-ui-toolbar .bold-item .button-icon{ background: transparent url(Silk/bold.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .createlink-item .button-icon{ background: transparent url(Silk/createlink.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .indent-item .button-icon{ background: transparent url(Silk/bold.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .insertorderedlist-item .button-icon{ background: transparent url(Silk/insertorderedlist.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .insertunorderedlist-item .button-icon{ background: transparent url(Silk/insertunorderedlist.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .italic-item .button-icon{ background: transparent url(Silk/italic.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .outdent-item .button-icon{ background: transparent url(Silk/redo.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .redo-item .button-icon{ background: transparent url(Silk/redo.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .strikethrough-item .button-icon{ background: transparent url(Silk/strikethrough.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .toggleview-item .button-icon{ background: transparent url(Silk/toggleview.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .underline-item .button-icon{ background: transparent url(Silk/underline.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .undo-item .button-icon{ background: transparent url(Silk/undo.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .unlink-item .button-icon{ background: transparent url(Silk/unlink.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .urlimage-item .button-icon{ background: transparent url(Silk/picture.png) no-repeat top left; }
+.mooeditable-ui-toolbar .smiley-item .button-icon{ background: transparent url(Silk/smile.png) no-repeat top left; }
+
+.mooeditable-ui-toolbar .justifycenter-item .button-icon{ background: transparent url(Silk/justifycenter.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .justifyfull-item .button-icon{ background: transparent url(Silk/justifyfull.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .justifyleft-item .button-icon{ background: transparent url(Silk/justifyleft.png) no-repeat top left; } 
+.mooeditable-ui-toolbar .justifyright-item .button-icon{ background: transparent url(Silk/justifyright.png) no-repeat top left; } 
+
+.mooeditable-ui-toolbar .mooeditable-ui-button:hover,
+.mooeditable-ui-toolbar .mooeditable-ui-button.hover{
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.mooeditable-ui-button-overlay{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.mooeditable-ui-toolbar .mooeditable-ui-button.active,
+.mooeditable-ui-toolbar .mooeditable-ui-button.onActive{
+	background-color: #555;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}

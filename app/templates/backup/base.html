@@ -1,0 +1,105 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}
+	{% if title %}{{ title }} - Фатьольй{% else %}{{ _('Фатьольй') }}{% endif %}
+{% endblock %}
+
+{% block navbar %}
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="height: 36px; width: 36px;">
+					<span class="sr-only">Toggle navigation</span>
+					<img src="/static/menu.png" style="height: 24px;">
+				</button>
+				<a class="navbar-brand" href="{{ url_for('main.index') }}"><img src="../static/logonavbar.png" style="height: 25px;"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="{{ url_for('main.explore') }}"><img src="../static/all.png" style="width: 24px;">{{ _(' Все посты') }}</a></li>
+					{% if not current_user.is_anonymous %}
+					<li><a href="{{ url_for('main.messages') }}"><img src="../static/messages.png" style="width: 24px;">{{ _(' Сообщения ') }}
+							{% set new_messages = current_user.new_messages() %}
+							<span id="message_count" class="badge"
+								  style="visibility: {% if new_messages %}visible
+													 {% else %}hidden {% endif %};">
+								{{ new_messages }}
+							</span></a></li>
+					{% endif %}
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					{% if current_user.is_anonymous %}
+					<li><a href="{{ url_for('auth.login') }}"><img src="../static/login.png" style="width: 24px;">{{ _(' Войти') }}</a></li>
+					{% else %}
+					<li><a href="{{ url_for('main.user', username=current_user.username) }}"><img src="{{ '/static/avatars/' + current_user.username + '.png' }}" style="border-radius: 64px;" width="24" height="24">{{ " @" + _(current_user.username) }}</a></li>
+					<li><a href="{{ url_for('auth.logout') }}"><img src="../static/logout.png" style="width: 24px;">{{ _(' Выйти') }}</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="alert alert-info" role="alert">{{ message }}</div>
+			{% endfor %}
+		{% endif %}
+		{% endwith %}
+
+		{# application content needs to be provided in the app_content block #}
+		{% block app_content %}{% endblock %}
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	{{ super() }}
+	{{ moment.include_moment() }}
+	{{ moment.lang(g.locale) }}
+	<script>
+		function translate(sourceElem, destElem, sourceLang, destLang) {
+			$(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+			$.post('/translate', {
+				text: $(sourceElem).text(),
+				source_language: sourceLang,
+				dest_language: destLang
+			}).done(function(response) {
+				$(destElem).text(response['text'])
+			}).fail(function() {
+				$(destElem).text("{{ _('Error: Could not contact server.') }}");
+			});
+		}
+		function set_message_count(n) {
+			$('#message_count').text(n);
+			$('#message_count').css('visibility', n ? 'visible' : 'hidden');
+		}
+		{% if current_user.is_authenticated %}
+		$(function() {
+			var since = 0;
+			setInterval(function() {
+				$.ajax('{{ url_for('main.notifications') }}?since=' + since).done(
+					function(notifications) {
+						for (var i = 0; i < notifications.length; i++) {
+							if (notifications[i].name == 'unread_message_count')
+								set_message_count(notifications[i].data);
+							since = notifications[i].timestamp;
+						}
+					}
+				);
+			}, 10000);
+		});
+		{% endif %}
+		function share(id) {
+			var str = document.getElementById("sharelink" + id);
+			str.select()
+			document.execCommand('copy');
+			alert("Ссылка скопирована в буфер обмена");
+		}
+	</script>
+{% endblock %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}

@@ -1,0 +1,43 @@
+<table class="table table-hover post">
+	<tr><td><span class="postcontent"><div id = "image2_div"></div></span></td></tr>
+</table>
+
+  <script>
+<!-- 
+	rnd.today=new Date();
+	rnd.seed=rnd.today.getTime();
+
+	function rnd() {
+        rnd.seed = (rnd.seed*9301+49297) % 233280;
+        return rnd.seed/(233280.0);
+	}
+
+	function rand(number) {
+		var result = Math.floor(rnd() * number);
+		if (!result) result = 0;
+		return result
+	}
+	var imageimgs = new Array("../static/banners/banner1.png", "../static/banners/banner2.png", "../static/banners/banner3.png", "../static/banners/banner4.png", "../static/banners/banner5.png", "../static/banners/banner6.png", "../static/banners/banner7.png", "../static/banners/banner8.png", "../static/banners/banner9.png", "../static/banners/banner10.png");
+	var imagelnks = new Array("http://mortola.ml", "http://mortola.ml", "http://mortola.ml", "http://mortola.ml", "http://mortola.ml", "http://mortola.ml", "http://mortola.ml", "http://mortola.ml", "http://mortola.ml", "http://mortola.ml");
+	var imagealt = new Array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+	var rotatorHtml = "";
+	var endJs = "";
+
+	for(var img in imageimgs){
+		var thisImg = new Image();
+		thisImg.src = imageimgs[img];
+	}
+	var imageimgCt = 10;
+	var imagecurrentbanner = rand(imageimgCt);
+	var openlink = "";
+	var imagebanner = document.getElementById('image');
+	var imagelink = document.getElementById('imagebannerLink');
+	
+		if(imagelnks[imagecurrentbanner] != ""){
+		rotatorHtml += '<a href="' + imagelnks[imagecurrentbanner] + '" id="imagebannerLink"  target="_blank">';
+		endJs = "</a>";
+	}
+	rotatorHtml += '<img src="' + imageimgs[imagecurrentbanner] + '" alt = "' + imagealt[imagecurrentbanner] + '" id="imagebanner" style="width: 100%;">' + endJs;
+	document.getElementById("image2_div").innerHTML = rotatorHtml;	
+// -->
+</script>

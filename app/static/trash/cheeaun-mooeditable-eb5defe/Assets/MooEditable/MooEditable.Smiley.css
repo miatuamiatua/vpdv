@@ -1,0 +1,8 @@
+.smiley-overlay{
+	line-height: 1em;
+}
+
+.smiley-overlay .smiley-image{
+	margin: 2px;
+	cursor: pointer;
+}

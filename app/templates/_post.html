@@ -1,0 +1,29 @@
+{% set last_seen = post.author.last_seen | string() %}
+{% set postid = post.id | string() %}
+	<table class="table table-hover post" id="post{{ post.id }}">
+		<tr>
+			<td width="48px">
+				<a href="{{ url_for('main.user', username=post.author.username) }}">
+					{% if last_seen[0:-10] == time %}
+					<p style="background-image: url({{ '/getavatar/' + post.author.username }}); border-radius: 24px; background-size: 48px; margin-bottom: 0px;"><img src="{{ '/static/onlineoverlay.png' }}" width="48" height="48">
+					{% else %}
+					<img src="{{ '/getavatar/' + post.author.username }}" style="border-radius: 24px; margin-bottom: 0px;" width="48" height="48">
+					{% endif %}
+				</a>
+			</td>
+			<td>
+				<h6>
+				{% set user_link %}
+                    <a href="{{ url_for('main.user', username=post.author.username) }}">
+                        @{{ post.author.username }}
+                    </a>
+                {% endset %}
+                {{ _('%(username)s %(when)s',
+                    username=user_link, when=moment(post.timestamp).fromNow()) }}
+                  <a href="{{ url_for('main.share') }}?author={{ post.author.username }}&id={{ postid }}"><img src="{{ '/static/share.png' }}" width="12" height="12"></a>
+                <br>
+            	</h6>
+                <span id="post{{ post.id }}" class="postcontent">{{ post.body }}</span>
+			</td>
+		</tr>
+	</table>
